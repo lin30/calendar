@@ -25,17 +25,20 @@ MobileArea.prototype = {
         '</div>' +
         '<div class="lareaRollMask">' +
         '<div class="areaRoll">' +
-        '<div>' +
+        '<div class="scroller-container-prov">' +
+        '<div class="scroller-mask"></div>' +
         '<div class="gear areaProvince" data-areatype="areaProvince"></div>' +
         '<div class="areaGrid">' +
         '</div>' +
         '</div>' +
-        '<div>' +
+        '<div class="scroller-container-city">' +
+        '<div class="scroller-mask"></div>' +
         '<div class="gear areaCity" data-areatype="areaCity"></div>' +
         '<div class="areaGrid">' +
         '</div>' +
         '</div>' +
-        '<div>' +
+        '<div class="scroller-container-county">' +
+        '<div class="scroller-mask"></div>' +
         '<div class="gear areaCounty" data-areatype="areaCounty"></div>' +
         '<div class="areaGrid">' +
         '</div>' +
@@ -54,9 +57,9 @@ MobileArea.prototype = {
         _self.finish(e)
       })
 
-      var areaProvince = _self.gearArea.querySelector('.areaProvince')
-      var areaCity = _self.gearArea.querySelector('.areaCity')
-      var areaCounty = _self.gearArea.querySelector('.areaCounty')
+      var areaProvince = _self.gearArea.querySelector('.scroller-container-prov')
+      var areaCity = _self.gearArea.querySelector('.scroller-container-city')
+      var areaCounty = _self.gearArea.querySelector('.scroller-container-county')
       if (_self.column === 2) {
         areaCounty.parentNode.style.display = 'none'
       }
@@ -85,13 +88,16 @@ MobileArea.prototype = {
     function gearTouchStart(e) {
       e.preventDefault()
       var target = e.target
-      while (true) {
-        if (!target.classList.contains('gear')) {
-          target = target.parentElement
-        } else {
-          break
-        }
+      if (target.className === 'scroller-mask') {
+        target = target.nextElementSibling
       }
+      // while (true) {
+      //   if (!target.classList.contains('gear')) {
+      //     target = target.parentElement
+      //   } else {
+      //     break
+      //   }
+      // }
       clearInterval(target['int_' + target.id])
       target['old_' + target.id] = e.targetTouches[0].screenY
       target['o_t_' + target.id] = (new Date()).getTime()
@@ -107,13 +113,16 @@ MobileArea.prototype = {
     function gearTouchMove(e) {
       e.preventDefault()
       var target = e.target
-      while (true) {
-        if (!target.classList.contains('gear')) {
-          target = target.parentElement
-        } else {
-          break
-        }
+      if (target.className === 'scroller-mask') {
+        target = target.nextElementSibling
       }
+      // while (true) {
+      //   if (!target.classList.contains('gear')) {
+      //     target = target.parentElement
+      //   } else {
+      //     break
+      //   }
+      // }
       target['new_' + target.id] = e.targetTouches[0].screenY
       target['n_t_' + target.id] = (new Date()).getTime()
       var f = (target['new_' + target.id] - target['old_' + target.id]) * 30 / window.innerHeight
@@ -129,13 +138,16 @@ MobileArea.prototype = {
     function gearTouchEnd(e) {
       e.preventDefault()
       var target = e.target
-      while (true) {
-        if (!target.classList.contains('gear')) {
-          target = target.parentElement
-        } else {
-          break
-        }
+      if (target.className === 'scroller-mask') {
+        target = target.nextElementSibling
       }
+      // while (true) {
+      //   if (!target.classList.contains('gear')) {
+      //     target = target.parentElement
+      //   } else {
+      //     break
+      //   }
+      // }
       var moveDiff = target['new_' + target.id] - target['old_' + target.id]
       var flag = moveDiff / (target['n_t_' + target.id] - target['o_t_' + target.id])
       if (Math.abs(flag) <= 0.2) {

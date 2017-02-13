@@ -48,8 +48,8 @@
   height: auto;
   overflow: hidden;
   background-color: transparent;
-  -webkit-mask: -webkit-gradient(linear, 0% 50%, 0% 100%, from(#debb47), to(rgba(36, 142, 36, 0)));
-  -webkit-mask: -webkit-linear-gradient(top, #debb47 50%, rgba(36, 142, 36, 0))
+  /*mask: gradient(linear, 0% 50%, 0% 100%, from(#debb47), to(rgba(36, 142, 36, 0)));
+  mask: linear-gradient(top, #debb47 50%, rgba(36, 142, 36, 0))*/
 }
 
 .areaRoll>div {
@@ -71,8 +71,8 @@
 }
 
 .lareaRollMask {
-  mask: gradient(linear, 0% 40%, 0% 0%, from(#debb47), to(rgba(36, 142, 36, 0)));
-  mask: linear-gradient(bottom, #debb47 50%, rgba(36, 142, 36, 0));
+  /*mask: gradient(linear, 0% 40%, 0% 0%, from(#debb47), to(rgba(36, 142, 36, 0)));
+  mask: linear-gradient(bottom, #debb47 50%, rgba(36, 142, 36, 0));*/
   padding: 0
 }
 
@@ -137,7 +137,6 @@
   line-height: 2em;
   text-align: center;
   display: flex;
-  line-clamp: 1;
   flex-direction: column;
   overflow: hidden
 }
@@ -221,4 +220,16 @@
   color: inherit;
   height: 1.41176471em;
   line-height: 1.41176471;
+}
+.scroller-mask {
+  position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    margin: 0 auto;
+    width: 100%;
+    z-index: 9903;
+    background-image: linear-gradient(top,rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5), rgba(255,255,255,0),rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.8)); 
+    background-position: center center;
+    background-repeat: no-repeat;
 }
