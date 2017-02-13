@@ -119,6 +119,7 @@ MobileArea.prototype = {
       var f = (target['new_' + target.id] - target['old_' + target.id]) * 30 / window.innerHeight
       target['pos_' + target.id] = target['o_d_' + target.id] + f
       target.style['-webkit-transform'] = 'translate3d(0,' + target['pos_' + target.id] + 'em,0)'
+      target.style['transform'] = 'translate3d(0,' + target['pos_' + target.id] + 'em,0)'
       target.setAttribute('top', target['pos_' + target.id] + 'em')
       if (e.targetTouches[0].screenY < 1) {
         gearTouchEnd(e)
@@ -189,6 +190,7 @@ MobileArea.prototype = {
         }
         target['pos_' + target.id] = pos
         target.style['-webkit-transform'] = 'translate3d(0,' + pos + 'em,0)'
+        target.style['transform'] = 'translate3d(0,' + pos + 'em,0)'
         target.setAttribute('top', pos + 'em')
         d++
       }, 30)
@@ -219,6 +221,7 @@ MobileArea.prototype = {
     }
     gearChild[_self.index].innerHTML = itemStr
     gearChild[_self.index].style['-webkit-transform'] = 'translate3d(0,' + (-gearVal * 2) + 'em,0)'
+    gearChild[_self.index].style['transform'] = 'translate3d(0,' + (-gearVal * 2) + 'em,0)'
     gearChild[_self.index].setAttribute('top', -gearVal * 2 + 'em')
     gearChild[_self.index].setAttribute('val', gearVal)
     _self.index++
