@@ -71,8 +71,8 @@
 }
 
 .lareaRollMask {
-  -webkit-mask: -webkit-gradient(linear, 0% 40%, 0% 0%, from(#debb47), to(rgba(36, 142, 36, 0)));
-  -webkit-mask: -webkit-linear-gradient(bottom, #debb47 50%, rgba(36, 142, 36, 0));
+  mask: gradient(linear, 0% 40%, 0% 0%, from(#debb47), to(rgba(36, 142, 36, 0)));
+  mask: linear-gradient(bottom, #debb47 50%, rgba(36, 142, 36, 0));
   padding: 0
 }
 
@@ -84,8 +84,8 @@
   margin: 0;
   box-sizing: border-box;
   z-index: 0;
-  /*border-top: 1px solid #d0d0d0;*/
-  /*border-bottom: 1px solid #d0d0d0*/
+  border-top: 1px solid #d0d0d0;
+  border-bottom: 1px solid #d0d0d0
 }
 
 .areaRoll>div:nth-child(3) .areaGrid>div {
@@ -146,7 +146,7 @@
   display: inline-block;
   margin-left: 4px;
   color: #999999;
-  font-size: .14rem;
+  /*font-size: .14rem;*/
   margin-top: .03rem;
 }
 
@@ -167,7 +167,7 @@
 }
 
 .cell_box {
-  padding: 0 0.18rem;
+  /*padding: 0 0.18rem;*/
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -193,6 +193,9 @@
   -webkit-box-flex: 1;
   -ms-flex: 1;
   flex: 1;
+}
+.cell_primary p {
+  min-width: 5em;
 }
 
 .cell_ft {
