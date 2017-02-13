@@ -12,32 +12,32 @@ module.exports = {
   },
   module: {
     rules: [{
-        test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          // vue-loader options go here
-        }
-      },
-      {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/
-      },
-      {
-        test: /\.(png|jpg|gif|svg|eot|ttf|woff)$/,
-        loader: 'url-loader',
-        options: {
-          name: '[name].[ext]?[hash]'
-        }
+      test: /\.vue$/,
+      loader: 'vue-loader',
+      options: {
+        // vue-loader options go here
       }
-      // {
-      //   test: /\.css$/,
-      //   use: [
-      //     "style-loader",
-      //     "css-loader",
-      //     "postcss-loader"
-      //   ]
-      // }
+    },
+    {
+      test: /\.js$/,
+      loader: 'babel-loader',
+      exclude: /node_modules/
+    },
+    {
+      test: /\.(png|jpg|gif|svg|eot|ttf|woff)$/,
+      loader: 'url-loader',
+      options: {
+        name: '[name].[ext]?[hash]'
+      }
+    },
+    {
+      test: /\.css$/,
+      use: [
+        "style-loader",
+        "css-loader",
+        "postcss-loader"
+      ]
+    }
     ]
   },
   plugins: [
@@ -45,14 +45,17 @@ module.exports = {
       filename: './index.html',
       template: path.resolve(__dirname, './demo/index.html'),
       inject: true
+    }),
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        context: __dirname
+      },
+      vue: {
+        postcss: function () {
+          return [autoprefixer]
+        }
+      }
     })
-    // new webpack.LoaderOptionsPlugin({
-    //   options: {
-    //     postcss: function () {
-    //       return [autoprefixer]
-    //     }
-    //   }
-    // })
   ],
   resolve: {
     alias: {
