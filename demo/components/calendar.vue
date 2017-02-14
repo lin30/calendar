@@ -99,8 +99,8 @@
 <style>
   @font-face {
     font-family: 'icomoon';
-    src: url('./fonts/icomoon.eot?r1pvgs');
-    src: url('./fonts/icomoon.eot?r1pvgs#iefix') format('embedded-opentype'), url('./fonts/icomoon.ttf?r1pvgs') format('truetype'), url('./fonts/icomoon.woff?r1pvgs') format('woff'), url('./fonts/icomoon.svg?r1pvgs#icomoon') format('svg');
+    src: url('../style/fonts/icomoon.eot?r1pvgs');
+    src: url('../style/fonts/icomoon.eot?r1pvgs#iefix') format('embedded-opentype'), url('../style/fonts/icomoon.ttf?r1pvgs') format('truetype'), url('../style/fonts/icomoon.woff?r1pvgs') format('woff'), url('../style/fonts/icomoon.svg?r1pvgs#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
   }
