@@ -2,6 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var autoprefixer = require('autoprefixer')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: './demo/main.js',
@@ -16,6 +17,9 @@ module.exports = {
       loader: 'vue-loader',
       options: {
         // vue-loader options go here
+        loaders: {
+          css: ExtractTextPlugin.extract("css-loader?sourceMap")
+        }
       }
     },
     {
@@ -55,7 +59,8 @@ module.exports = {
           return [autoprefixer]
         }
       }
-    })
+    }),
+    new ExtractTextPlugin('css/[name].css')
   ],
   resolve: {
     alias: {
