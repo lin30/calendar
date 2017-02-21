@@ -5,11 +5,13 @@ var autoprefixer = require('autoprefixer')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
+  name: 'client',
+  target: 'web',
   entry: './demo/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/',
-    filename: 'build.js'
+    filename: '[name].[hash].js'
   },
   module: {
     rules: [{
@@ -18,7 +20,10 @@ module.exports = {
       options: {
         // vue-loader options go here
         loaders: {
-          css: ExtractTextPlugin.extract("css-loader?sourceMap")
+          css: ExtractTextPlugin.extract({
+            loader: 'css-loader?sourceMap',
+            fallbackLoader: 'vue-style-loader'
+          })
         }
       }
     },
@@ -60,17 +65,28 @@ module.exports = {
         }
       }
     }),
-    new ExtractTextPlugin('css/[name].css')
+    new ExtractTextPlugin('css/[name].css'),
+    new webpack.DllReferencePlugin({
+      context: __dirname,
+      manifest: require('./dll/vendor-manifest.json')
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ],
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.common.js'
+      'vue': 'vue/dist/vue.js'
     },
     extensions: ['css', '.js', '.vue']
   },
   devServer: {
-    historyApiFallback: true,
-    noInfo: true
+    contentBase: path.resolve(__dirname, './dist'),
+    stats: {
+      colors: true,
+      chunks: false
+    },
+    noInfo: false,
+    inline: true,
+    hot: true
   },
   devtool: '#eval-source-map'
 }
