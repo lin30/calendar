@@ -11,6 +11,7 @@
     "dll": "webpack --config webpack.dll.config.js"
   },
   "dependencies": {
+    "add-asset-html-webpack-plugin": "^1.0.2",
     "vue": "^2.1.0",
     "vue-router": "^2.1.0"
   },

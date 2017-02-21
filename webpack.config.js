@@ -3,6 +3,7 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var autoprefixer = require('autoprefixer')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin')
 
 module.exports = {
   name: 'client',
@@ -70,7 +71,8 @@ module.exports = {
       context: __dirname,
       manifest: require('./dll/vendor-manifest.json')
     }),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new AddAssetHtmlPlugin({ filepath: path.resolve(__dirname, 'dll/vendor_dll.js'), publicPath: 'dll', outputPath: 'dll', includeSourcemap: false })
   ],
   resolve: {
     alias: {
@@ -109,6 +111,12 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
+    }),
+    // build时不需要引入vendor_dll
+    new HtmlWebpackPlugin({
+      filename: './index.html',
+      template: path.resolve(__dirname, './index.html'),
+      inject: true
     })
   ])
 }
