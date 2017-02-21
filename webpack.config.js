@@ -111,12 +111,6 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
-    }),
-    // build时不需要引入vendor_dll
-    new HtmlWebpackPlugin({
-      filename: './index.html',
-      template: path.resolve(__dirname, './index.html'),
-      inject: true
     })
   ])
 }
